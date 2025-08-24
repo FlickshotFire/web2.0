@@ -301,18 +301,6 @@ export default function Hero() {
           >
             Let's Connect
           </motion.button>
-
-          {/* Added Link for Knowledge Hub */}
-          <Link href="/knowledge-hub">
-            <motion.button
-              className="px-8 py-4 border-2 border-blue-400 text-blue-400 rounded-full font-bold text-lg hover:bg-blue-400 hover:text-black transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              data-testid="button-knowledge-hub"
-            >
-              Knowledge Hub
-            </motion.button>
-          </Link>
         </motion.div>
       </div>
 
