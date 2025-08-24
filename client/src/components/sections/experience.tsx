@@ -119,11 +119,7 @@ export default function Experience() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-12 mt-20">
-        <p className="text-lg text-gray-400">
-          © 2025 Crafted with passion, interest, skills, and love.
-        </p>
-      </footer>
+     
     </section>
   );
 }
