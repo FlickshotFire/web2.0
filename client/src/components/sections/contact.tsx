@@ -14,19 +14,8 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    // Form will be handled by Netlify, no need to prevent default
   };
 
   return (
@@ -46,11 +35,20 @@ export default function Contact() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Contact Form */}
             <div className={`section-enter ${isVisible ? "visible" : ""}`}>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true"
+                action="/success"
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Input
                       type="text"
+                      name="name"
                       placeholder="Your Name"
                       required
                       className="w-full bg-transparent border border-luxury-gold border-opacity-30 rounded-lg px-6 py-4 focus:border-luxury-gold focus:outline-none transition-colors duration-300 text-white placeholder:text-gray-500"
@@ -60,6 +58,7 @@ export default function Contact() {
                   <div>
                     <Input
                       type="email"
+                      name="email"
                       placeholder="Email Address"
                       required
                       className="w-full bg-transparent border border-luxury-gold border-opacity-30 rounded-lg px-6 py-4 focus:border-luxury-gold focus:outline-none transition-colors duration-300 text-white placeholder:text-gray-500"
@@ -70,6 +69,7 @@ export default function Contact() {
                 <div>
                   <Input
                     type="text"
+                    name="subject"
                     placeholder="Subject"
                     required
                     className="w-full bg-transparent border border-luxury-gold border-opacity-30 rounded-lg px-6 py-4 focus:border-luxury-gold focus:outline-none transition-colors duration-300 text-white placeholder:text-gray-500"
@@ -79,6 +79,7 @@ export default function Contact() {
                 <div>
                   <Textarea
                     rows={6}
+                    name="message"
                     placeholder="Your Message"
                     required
                     className="w-full bg-transparent border border-luxury-gold border-opacity-30 rounded-lg px-6 py-4 focus:border-luxury-gold focus:outline-none transition-colors duration-300 resize-none text-white placeholder:text-gray-500"
